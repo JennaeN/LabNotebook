@@ -3,15 +3,15 @@ _________________________________________________________________________
 
 GRADING
 
-Item 	Grade 	Points 	Out of 	Date 	Due
-Prelab 	On-Time:------------------------------------------------------------ 0 ---- Check Minus ---- Check ---- Check Plus  	 	5 		BOC L25
-Required Functionality 	On-Time----------------------------------------- Late: 1Day ---- 2Days ---- 3Days ---- 4+Days 		35 		COB L26
-B Functionality 	On-Time ------------------------------------------------- Late: 1Day ---- 2Days ---- 3Days ---- 4+Days 		10 		COB L26
-A Functionality 	On-Time ------------------------------------------------- Late: 1Day ---- 2Days ---- 3Days ---- 4+Days 		10 		COB L26
-Use of Git / Github 	On-Time:-------------------------------------------- 0 ---- Check Minus ---- Check ---- Check Plus 		10 		BOC L27
-Lab Notebook 	On-Time:--------------------------------------------------- 0 ---- Check Minus ---- Check ---- Check Plus -----
-                                                                                                              Late: 1Day ---- 2Days ---- 3Days ---- 4+Days 		30 		COB L27
-Total                                                                                                                                                                                        			100 	
+Item                                                                                         	Grade                              	         Points 	Out of 	Date 	Due
+Prelab   On-Time:------------------------------- 0 ---- Check Minus ---- Check ---- Check Plus            	 	5 		              BOC L25
+Required Functionality 	On-Time------------- Late: 1Day ---- 2Days ---- 3Days ---- 4+Days 		          35 		              COB L26
+B Functionality 	On-Time --------------------- Late: 1Day ---- 2Days ---- 3Days ---- 4+Days           		10              		COB L26
+A Functionality 	On-Time --------------------- Late: 1Day ---- 2Days ---- 3Days ---- 4+Days           		10               		COB L26
+Use of Git / Github 	On-Time:----------------- 0 ---- Check Minus ---- Check ---- Check Plus          		10		              BOC L27
+Lab Notebook 	On-Time:------------------------ 0 ---- Check Minus ---- Check ---- Check Plus -----
+                                                                          Late: 1Day ---- 2Days ---- 3Days ---- 4+Days  	  	       30            		COB L27
+Total                                                                                                                                                 			100 	
 _________________________________________________________________________
 
 OBJECTIVE/PURPOPOSE: In this lab, you'll use C to write a device driver for the LCD you used in Lab 3. You'll be expected to write clean, maintainable, modular code that is committed regularly to Git.
