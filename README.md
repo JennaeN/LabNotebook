@@ -56,5 +56,9 @@ A Functionality
 _________________________________________________________________________
 
 How I'll port different assembly language constructs in the Lab 3 template code to C:
+*bis is |= (sets bits)
+*bic is &=~ (clears bits)
+->In this way, checking to see if a button has been pushed can be converted into C. Other functions may be converted in a similary way.
 
-How I'll create software delays in C:
+How I'll create software delays in C: Software delays can be implemented by using __delay_cycles(num_of_cycles). This will delay by the specified number of clock cycles.
+I can use this method in place of my LCD Delay methods.
