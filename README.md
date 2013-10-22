@@ -4,13 +4,20 @@ _________________________________________________________________________
 GRADING
 
 Item                                                                                         	Grade                              	         Points 	Out of 	Date 	Due
+
 Prelab   On-Time:------------------------------- 0 ---- Check Minus ---- Check ---- Check Plus            	 	5 		              BOC L25
+
 Required Functionality 	On-Time------------- Late: 1Day ---- 2Days ---- 3Days ---- 4+Days 		          35 		              COB L26
+
 B Functionality 	On-Time --------------------- Late: 1Day ---- 2Days ---- 3Days ---- 4+Days           		10              		COB L26
+
 A Functionality 	On-Time --------------------- Late: 1Day ---- 2Days ---- 3Days ---- 4+Days           		10               		COB L26
+
 Use of Git / Github 	On-Time:----------------- 0 ---- Check Minus ---- Check ---- Check Plus          		10		              BOC L27
+
 Lab Notebook 	On-Time:------------------------ 0 ---- Check Minus ---- Check ---- Check Plus -----
                                                                           Late: 1Day ---- 2Days ---- 3Days ---- 4+Days  	  	       30            		COB L27
+                                                                          
 Total                                                                                                                                                 			100 	
 _________________________________________________________________________
 
@@ -47,3 +54,7 @@ A Functionality
     Consider how you'll create software delays in C.
     
 _________________________________________________________________________
+
+How I'll port different assembly language constructs in the Lab 3 template code to C:
+
+How I'll create software delays in C:
