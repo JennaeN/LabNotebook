@@ -11,15 +11,17 @@
 
 void initSPI();	//Initializes the SPI
 
-void LCDdelay();	//Will use __delay_cycles(num_of_cycles)
+//void delayMicro();	//Will use __delay_cycles(num_of_cycles)
 
 void LCDinit();	//Initialized the LCD on the Geek Box.
+
+void LCDclr(); //Create a blank screen
 
 void cursorToLineOne();	//Direct cursor to the first line for writing
 
 void cursorToLineTwo(); //Direct cursor to second line for writing
 
-void poll_button();	//B functionality - used to test button pushing
+void pollButton();	//B functionality - used to test button pushing
 
 void writeChar(char asciiChar);	//Obtain a character
 
