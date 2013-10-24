@@ -76,33 +76,29 @@ void writeString(char * string) {
 	}
 }
 
-void scrollString(char * string1, char * string2) {
-	unsigned int i = 0, count = 0;
+void scrollString(char * string1, char * string2, int length) {
+	unsigned int i = 0, count1 = 0, count2 = 0;
 
 	while (1) {
 		cursorToLineOne();
 		for (i = 0; i < 8; i++) {
-			writeDataByte(string1[(i+count)]);	//send data in the string to be written
-			if (count + i >= 28){
-						count = 0;
+			writeDataByte(string1[(i+count1)]);	//send data in the string to be written
+			if (count1 + i >= 28){
+						count1 = 0;
 			}
 		}
 
 		cursorToLineTwo();
 		for(i = 0; i < 8; i++){
-			writeDataByte(string2[(i+count)]);	//send data in the string to be written
-			if (count + i >= string2.length()){
-						count = 0;
+			writeDataByte(string2[(i+count2)]);	//send data in the string to be written
+			//if (count + i >= string2.length()){
+			if (count2 + i >= length){
+						count2 = 0;
 			}
 		}
-		count++;
-		__delay_cycles(0xFFFF);
-		__delay_cycles(0xFFFF);
-		__delay_cycles(0xFFFF);
-		__delay_cycles(0xFFFF);
-		__delay_cycles(0xFFFF);
-		__delay_cycles(0xFFFF);
-
+		count1++;
+		count2++;
+		__delay_cycles(665544);
 
 		LCDclr();
 		//cursorToLineOne();
@@ -110,16 +106,14 @@ void scrollString(char * string1, char * string2) {
 	}
 }
 
-char set_SS_hi() {
+void set_SS_hi() {
 
 	P1OUT |= BIT0;
-	return BIT0;
 }
 
-char set_SS_lo() {
+void set_SS_lo() {
 
 	P1OUT &= ~BIT0;
-	return BIT0;
 }
 
 void delayMicro() {
@@ -200,4 +194,27 @@ void SPI_send(char byteToSend) {
 	readByte = UCB0RXBUF;
 
 	set_SS_hi();
+}
+
+int pollButton(){
+
+
+	int pollBtn = 0;
+	while(pollBtn == 0){
+		if((P1IN & BIT1) == 0){
+			pollBtn=1;
+			return pollBtn;
+		}
+
+		if((P1IN & BIT2) == 0){
+			pollBtn=2;
+			return pollBtn;
+		}
+
+		if((P1IN & BIT3) == 0){
+			pollBtn=3;
+			return pollBtn;
+		}
+	}
+	return pollBtn;
 }
