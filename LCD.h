@@ -11,8 +11,6 @@
 
 void initSPI();	//Initializes the SPI
 
-//void delayMicro();	//Will use __delay_cycles(num_of_cycles)
-
 void LCDinit();	//Initialized the LCD on the Geek Box.
 
 void LCDclr(); //Create a blank screen
@@ -21,12 +19,11 @@ void cursorToLineOne();	//Direct cursor to the first line for writing
 
 void cursorToLineTwo(); //Direct cursor to second line for writing
 
-void pollButton();	//B functionality - used to test button pushing
+//void pollButton();	//B functionality - used to test button pushing
+void writeDatatByte(char dataByte);
 
-void writeChar(char asciiChar);	//Obtain a character
+void writeString(char * string);	//Write the string of characters
 
-void writeString(char string);	//Write the string of characters
-
-void scrollString(char string1, char string2);	//Implement scrolling function
+void scrollString(char * string1, char * string2);	//Implement scrolling function
 
 #endif /* LCD_H_ */
