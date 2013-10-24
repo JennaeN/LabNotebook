@@ -7,17 +7,17 @@
 int main(void) {
 	WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
 
-	char * requiredMsg = " ECE382 is my favorite class!";
+	char * requiredMsg = "ECE382 is my favorite class! ";
 	char * prompt = "Message?";
 	char * promptKey = "Press123";
 
-	char * message1 = " Learn from yesterday...";
+	char * message1 = "Learn from yesterday... ";
 	int length1 = 23;
 
-	char * message2 = " Live for today...";
+	char * message2 = "Live for today... ";
 	int length2 = 17;
 
-	char * message3 = " Hope for tomorrow.";
+	char * message3 = "Hope for tomorrow. ";
 	int length3 = 18;
 
 

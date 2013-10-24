@@ -76,34 +76,71 @@ void writeString(char * string) {
 	}
 }
 
-void scrollString(char * string1, char * string2, int length) {
-	unsigned int i = 0, count1 = 0, count2 = 0;
+void scrollMessage(char *string, char *count);
+
+void scrollString(char *string1, char *string2, int length) {
+	unsigned int i = 0;
+
+	char *count1 = string1, *count2 = string2;
 
 	while (1) {
 		cursorToLineOne();
-		for (i = 0; i < 8; i++) {
-			writeDataByte(string1[(i+count1)]);	//send data in the string to be written
-			if (count1 + i >= 28){
-						count1 = 0;
-			}
-		}
+		char *currentChar = count1;
+
+				for (i = 0; i < 8; i++) {
+						writeDataByte(*currentChar);	//send data in the string to be written
+
+						currentChar++;
+
+						if (*currentChar == 0)
+							currentChar = string1;
+					}
+					count1++;
+
+					if (*count1 == 0) {
+						count1 = string1;
+					}
 
 		cursorToLineTwo();
-		for(i = 0; i < 8; i++){
-			writeDataByte(string2[(i+count2)]);	//send data in the string to be written
-			//if (count + i >= string2.length()){
-			if (count2 + i >= length){
-						count2 = 0;
-			}
-		}
-		count1++;
-		count2++;
+		char *currentChar2 = count2;
+		for (i = 0; i < 8; i++) {
+						writeDataByte(*currentChar2);	//send data in the string to be written
+
+						currentChar2++;
+
+						if (*currentChar2 == 0)
+							currentChar2 = string2;
+					}
+					count2++;
+
+					if (*count2 == 0) {
+						count2 = string2;
+					}
+
 		__delay_cycles(665544);
 
 		LCDclr();
-		//cursorToLineOne();
-
 	}
+}
+
+//Unused function.
+void scrollMessage(char *string, char *count) {
+	unsigned int i = 0;
+	char *currentChar = count;
+	for (i = 0; i < 8; i++) {
+		writeDataByte(*currentChar);	//send data in the string to be written
+
+		currentChar++;
+
+		if (*currentChar == 0)
+			currentChar = string;
+	}
+	count++;
+
+	if (*count == 0) {
+		count = string;
+	}
+
 }
 
 void set_SS_hi() {
@@ -196,23 +233,22 @@ void SPI_send(char byteToSend) {
 	set_SS_hi();
 }
 
-int pollButton(){
-
+int pollButton() {
 
 	int pollBtn = 0;
-	while(pollBtn == 0){
-		if((P1IN & BIT1) == 0){
-			pollBtn=1;
+	while (pollBtn == 0) {
+		if ((P1IN & BIT1)== 0){
+			pollBtn = 1;
 			return pollBtn;
 		}
 
-		if((P1IN & BIT2) == 0){
-			pollBtn=2;
+		if ((P1IN & BIT2)== 0){
+			pollBtn = 2;
 			return pollBtn;
 		}
 
-		if((P1IN & BIT3) == 0){
-			pollBtn=3;
+		if ((P1IN & BIT3)== 0){
+			pollBtn = 3;
 			return pollBtn;
 		}
 	}
