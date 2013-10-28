@@ -1,8 +1,9 @@
 /*
- * ClockConfiguration.h
+ * ClockCalibration.h
  *
  *  Created on: Oct 24, 2013
- *      Author: C15Jennae.Steinmille
+ *      Author: C15Jennae.Steinmiller
+ *     Description: Declares the functions that ClockCalibration.c uses.
  */
 
 #ifndef CLOCKCONFIGURATION_H_

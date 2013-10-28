@@ -56,6 +56,8 @@ A Functionality
     
 _________________________________________________________________________
 
+PRELIMINARY DESIGN
+
 How I'll port different assembly language constructs in the Lab 3 template code to C:
 *bis is |= (sets bits)
 *bic is &=~ (clears bits)
@@ -63,26 +65,52 @@ How I'll port different assembly language constructs in the Lab 3 template code 
 
 How I'll create software delays in C: Software delays can be implemented by using __delay_cycles(num_of_cycles). This will delay by the specified number of clock cycles.
 I can use this method in place of my LCD Delay methods.
-=======
-ClockCalibration
-================
 
-Allows the user to change between four different clock speeds when using the MSP430. The clock 
-speeds are 1MHz, 8MHz, 12MHz, and 16MHz. There is a different function for each clock length.
+Overall, I will reference my code from Lab03, and code that is on the website shifting from assembly to 
+C language.
 
-API - ClockCalibration.h
+_________________________________________________________________________
 
-ClockCalibration.h calls 4 different functions - one for each different clock speed. They are:
+TESTING AND RESULTS
 
-void changeClockSpeed1();
-void changeClockSpeed8();
-void changeClockSpeed12();
-void changeClockSpeed16();
+I began testing once I had transferred all useful code from Lab03 into C language. 
+The first problem I encountered was initializing my screen. To fix this, I ensured that my 
+wires were wired correctly, and then made sure that I did not have unnccessary code.
+Error was found in the LCD_write_4 portion of my code. To fix this problem, I deleted my first 
+line of code which initialized sendByte. Since sendByte is sent in, it should not be set to any
+other value.
 
-After calling one of these functions, the clock speed will change. No input or output is necessary.
+The next step was writing a character to the screen. 
 
-USAGE - ClockCalibration is used to changed the speed of the clock in the MSP430.
-This can be helpful when writing code used on many different machines. It is useful because 
-the delays will not need to be calculated for each chip in order to work properly - the delay (based
-on universal clock times) will be the same across the board. 
->>>>>>> 53b064adbc12dea60754276f083b6f7963e24051
+Once I could write a character, I wrote a string. Initially my code would not write both strings. 
+At this point, I created cursorToLineOne and cursorToLineTwo. After making these functions, the 
+string would appear on each line.
+
+Many errors were encountered during scrolling functionality. 
+Originally, my string was just blocks. I changed my code to use writeDataByte, and tried using many
+different counters to make it work properly. Eventually, I had a jumpy string appearing. 
+In the end, I used two pointers - one for the current character and one for the beginning character of
+the string. Both of these referenced the beginning of the string once they reached the end of the string.
+
+_________________________________________________________________________
+
+RESULTS/ CONCLUSION
+
+In this lab, I learned how to convert from assembly language to a high level language. High
+level languages make programming easier to read, and condense the code. Also, using multiple
+files to implement one program makes the program more understandable. 
+
+Scrolling functionality was the most difficult portion of this lab. To make my program scroll, 
+I needed to use pointers. One pointer would point at the current character being printed to the screen,
+while the other pointer pointed at the beginning character of the string. By using these pointers and 
+referencing them to the beginning of the string of text, I was able to implement scrolling functionality.
+
+In future labs, I will commit more often and with more descriptive statements. Every once in a while
+problems are ran into while commiting. 
+
+_________________________________________________________________________
+
+DOCUMENTATION
+
+In this lab I received help from C2C Ryan Hub. C2C Hub helped me with the buttons and scrolling
+functionality.
