@@ -3,7 +3,9 @@
  *
  *  Created on: Oct 21, 2013
  *      Author: C15Jennae.Steinmiller
- *      Description: This library will interact with the LCD on the Geek Box.
+ *      Description: This library will act as a link between main.c and LCD.c.
+ *      Each of these functions are used to interact with the LCD on the Geek Box
+ *      to get the proper message scrolling across the LCD screen before and after button push.
  */
 
 #ifndef LCD_H_
@@ -25,6 +27,6 @@ void writeDatatByte(char dataByte);
 
 void writeString(char * string);	//Write the string of characters
 
-void scrollString(char * string1, char * string2, int length);	//Implement scrolling function
+void scrollString(char * string1, char * string2);	//Implement scrolling function
 
 #endif /* LCD_H_ */

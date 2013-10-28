@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 LAB 4 - C -"AN LCD DEVICE DRIVER"
 _________________________________________________________________________
 
@@ -62,3 +63,26 @@ How I'll port different assembly language constructs in the Lab 3 template code 
 
 How I'll create software delays in C: Software delays can be implemented by using __delay_cycles(num_of_cycles). This will delay by the specified number of clock cycles.
 I can use this method in place of my LCD Delay methods.
+=======
+ClockCalibration
+================
+
+Allows the user to change between four different clock speeds when using the MSP430. The clock 
+speeds are 1MHz, 8MHz, 12MHz, and 16MHz. There is a different function for each clock length.
+
+API - ClockCalibration.h
+
+ClockCalibration.h calls 4 different functions - one for each different clock speed. They are:
+
+void changeClockSpeed1();
+void changeClockSpeed8();
+void changeClockSpeed12();
+void changeClockSpeed16();
+
+After calling one of these functions, the clock speed will change. No input or output is necessary.
+
+USAGE - ClockCalibration is used to changed the speed of the clock in the MSP430.
+This can be helpful when writing code used on many different machines. It is useful because 
+the delays will not need to be calculated for each chip in order to work properly - the delay (based
+on universal clock times) will be the same across the board. 
+>>>>>>> 53b064adbc12dea60754276f083b6f7963e24051

@@ -3,6 +3,7 @@
  *
  *  Created on: Oct 22, 2013
  *      Author: C15Jennae.Steinmiller
+ *      Description: LCD.c contains all of the functions that main.c uses.
  */
 
 #include <msp430.h>
@@ -16,7 +17,6 @@ void initSPI() {
 	UCB0CTL1 |= UCSWRST;
 	UCB0CTL0 |= UCCKPH | UCMSB | UCMST | UCSYNC;
 	UCB0CTL1 |= UCSSEL1;                       //selects clock to use
-	//UCB0STAT |= UCLISTEN;                      //enables internal loopback
 
 	P1DIR |= BIT0;							//For my SS
 
@@ -32,11 +32,13 @@ void initSPI() {
 	UCB0CTL1 &= ~UCSWRST;                       //enable subsystem
 }
 
+//Declare the functions to be used in LCDinit
 void writeCommandNibble(char commandNibble);
 void writeCommandByte(char commandByte);
 void SPI_send(char byteToSend);
 void delayMicro();
 
+//Initialize the LCD screen
 void LCDinit() {
 	writeCommandNibble(0x03);
 	writeCommandNibble(0x03);
@@ -54,19 +56,23 @@ void LCDinit() {
 	delayMicro();
 }
 
+//Clear the LCD screen
 void LCDclr() {
 	writeCommandByte(1);
 }
 
+//Declare functions to be used in writeDataByte
 void LCD_write_8(char byteToSend);
 void delayMilli();
 
+//Write to the LCD screen
 void writeDataByte(char dataByte) {
 	LCDcon |= RS_MASK;
 	LCD_write_8(dataByte);
 	delayMilli();
 }
 
+//Used to write a string to the LCD
 void writeString(char * string) {
 	int i = 0;
 	LCDcon |= RS_MASK;
@@ -76,9 +82,11 @@ void writeString(char * string) {
 	}
 }
 
+//Declare scrollMessage
 void scrollMessage(char *string, char *count);
 
-void scrollString(char *string1, char *string2, int length) {
+//scrollString allows two strings to be scrolled (across the upper and lower lines)
+void scrollString(char *string1, char *string2) {
 	unsigned int i = 0;
 
 	char *count1 = string1, *count2 = string2;
@@ -87,60 +95,44 @@ void scrollString(char *string1, char *string2, int length) {
 		cursorToLineOne();
 		char *currentChar = count1;
 
-				for (i = 0; i < 8; i++) {
-						writeDataByte(*currentChar);	//send data in the string to be written
+		for (i = 0; i < 8; i++) {
+			writeDataByte(*currentChar);//send data in the string to be written
 
-						currentChar++;
+			currentChar++;
 
-						if (*currentChar == 0)
-							currentChar = string1;
-					}
-					count1++;
+			//Restart the string if there is not a current character
+			if (*currentChar == 0)
+				currentChar = string1;
+		}
+		count1++;
 
-					if (*count1 == 0) {
-						count1 = string1;
-					}
+		//Restart the string
+		if (*count1 == 0) {
+			count1 = string1;
+		}
 
 		cursorToLineTwo();
 		char *currentChar2 = count2;
 		for (i = 0; i < 8; i++) {
-						writeDataByte(*currentChar2);	//send data in the string to be written
+			writeDataByte(*currentChar2);//send data in the string to be written
 
-						currentChar2++;
+			currentChar2++;
 
-						if (*currentChar2 == 0)
-							currentChar2 = string2;
-					}
-					count2++;
+			//Restart the string if there is no longer a current character
+			if (*currentChar2 == 0)
+				currentChar2 = string2;
+		}
+		count2++;
 
-					if (*count2 == 0) {
-						count2 = string2;
-					}
+		//Restart the string
+		if (*count2 == 0) {
+			count2 = string2;
+		}
 
-		__delay_cycles(665544);
+		__delay_cycles(665544);	//Add long delay so that the message can be read
 
-		LCDclr();
+		LCDclr();		//Clear the screen for more to be written
 	}
-}
-
-//Unused function.
-void scrollMessage(char *string, char *count) {
-	unsigned int i = 0;
-	char *currentChar = count;
-	for (i = 0; i < 8; i++) {
-		writeDataByte(*currentChar);	//send data in the string to be written
-
-		currentChar++;
-
-		if (*currentChar == 0)
-			currentChar = string;
-	}
-	count++;
-
-	if (*count == 0) {
-		count = string;
-	}
-
 }
 
 void set_SS_hi() {
@@ -172,6 +164,7 @@ void writeCommandNibble(char commandNibble) {
 	delayMilli();
 }
 
+//Determine where to set the cursor
 void writeCommandByte(char commandByte) {
 	LCDcon &= ~RS_MASK;
 	LCD_write_8(commandByte);
@@ -201,6 +194,7 @@ void cursorToLineOne() {
 	writeCommandByte(0x80);
 }
 
+//Writes 8 by calling LCD_write_4 twice
 void LCD_write_8(char byteToSend) {
 	unsigned char sendByte = byteToSend;
 
@@ -217,6 +211,7 @@ void LCD_write_8(char byteToSend) {
 	LCD_write_4(sendByte);
 }
 
+//Send a character to the SPI
 void SPI_send(char byteToSend) {
 	volatile char readByte;
 
@@ -233,6 +228,7 @@ void SPI_send(char byteToSend) {
 	set_SS_hi();
 }
 
+//Returns a different integer corresponding to the button pushed.
 int pollButton() {
 
 	int pollBtn = 0;
