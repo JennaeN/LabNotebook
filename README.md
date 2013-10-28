@@ -71,6 +71,11 @@ C language.
 
 _________________________________________________________________________
 
+HARDWARE SCHEMATIC
+
+The hardware schematic can be found in the lab notebook as a .jpg file. 
+
+_________________________________________________________________________
 TESTING AND RESULTS
 
 I began testing once I had transferred all useful code from Lab03 into C language. 
